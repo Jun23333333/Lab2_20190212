@@ -44,20 +44,25 @@ public class Contador extends AppCompatActivity {
         contadorRunnable = new Runnable() {
             @Override
             public void run() {
-                contador++; // Aumentar en 1 segundo
+                contador++;
 
                 if (contador > 226) {
-                    contador = 104; // Reiniciar el contador cuando llegue a 226
+                    contador = 104;
                 }
                 actualizarContador();
                 if(click == true){
                     delay = delay - 1000;
                     click = false;
                 }
-                handler.postDelayed(this, delay); // Programar la próxima actualización en 10 segundos
+                handler.postDelayed(this, delay);
             }
         };
-        handler.postDelayed(contadorRunnable, delay); // Comenzar la actualización después de 10 segundos
+        handler.postDelayed(contadorRunnable, delay);
+
+        if(tengoInternet()){
+            Toast.makeText(this, "Tienes internet", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "No tienes internet", Toast.LENGTH_SHORT).show();}
     }
 
     private void actualizarContador() {
